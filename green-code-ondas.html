@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Cyty Plus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" defer src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Portada1.png" alt="Portada de Cyber Cyty Plus">
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-text">🔥 Bienvenido a Cyber Cyty Plus - Conectando al entretenimiento 🔥</div>
+        </div>
+        <div class="menu">
+            <a onclick="showTab('inicio')">Inicio</a>
+            <a onclick="showTab('mensajes')">Mensajes</a>
+            <a onclick="showTab('publicaciones')">Publicaciones</a>
+            <a onclick="showTab('perfil')">Perfil</a>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <h2>Menú Lateral</h2>
+                <ul>
+                    <li><a href="#">Opción 1</a></li>
+                    <li><a href="#">Opción 2</a></li>
+                    <li><a href="#">Opción 3</a></li>
+                </ul>
+            </div>
+            <div class="main">
+                <div id="inicio" class="tab-content active">
+                    <h2>Bienvenido a Cyber Cyty Plus</h2>
+                    <p>Selecciona una pestaña del menú para explorar las funciones.</p>
+                </div>
+                <div id="mensajes" class="tab-content">
+                    <h2>Iniciar Sesión / Registrarse</h2>
+                    <!-- Formulario de inicio de sesión -->
+                    <input type="email" id="email" placeholder="Correo">
+                    <input type="password" id="password" placeholder="Contraseña">
+                    <button id="btnLogin">Ingresar</button>
+                    <button id="btnRegister">Registrarse</button>
+                    <button id="btnLogout" style="display:none;">Cerrar Sesión</button>
+                    <!-- Formulario de registro oculto por defecto -->
+                    <div id="registerForm" style="display: none; margin-top: 20px;">
+                        <h3>Registro</h3>
+                        <input type="text" id="regNombre" placeholder="Nombre completo">
+                        <input type="email" id="regEmail" placeholder="Correo electrónico">
+                        <input type="password" id="regPassword" placeholder="Contraseña">
+                        <input type="password" id="regConfirmPassword" placeholder="Confirmar contraseña">
+                        <button id="btnSubmitRegister">Crear Cuenta</button>
+                    </div>
+                </div>
+                <div id="publicaciones" class="tab-content">
+                    <h2>Publicaciones</h2>
+                    <p>Aquí se mostrarán las publicaciones del usuario.</p>
+                </div>
+                <div id="perfil" class="tab-content">
+                    <h2>Perfil</h2>
+                    
+                    <!-- Contenedor de perfil -->
+                    <div class="perfil-container">
+                        <img id="profileImage" src="472981295_8883233155106151_253075751472862672_n.jpg" alt="Foto de perfil">
+                        <div class="perfil-info">
+                            <h3 id="userName">Usuario</h3>
+                            <div class="status">
+                                <span id="statusCircle" class="status-circle"></span>
+                                <span id="statusText">Inactivo</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Recuadro de mensaje temporal -->
+                    <div id="tempMessageBox" class="message-box">
+                        <p id="tempMessage">Este es un mensaje temporal que desaparecerá en 12 horas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>© 2025 Cyber Cyty Plus</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById("btnRegister").addEventListener("click", function() {
+        let registerForm = document.getElementById("registerForm");
+        registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
+    });
+
+    document.getElementById("btnSubmitRegister").addEventListener("click",  function() {
+        let nombre = document.getElementById("regNombre").value;
+        let email = document.getElementById("regEmail").value;
+        let password = document.getElementById("regPassword").value;
+        let confirmPassword = document.getElementById("regConfirmPassword").value;
+
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return;
+        }
+
+        alert("¡Registro exitoso! Nombre: " + nombre + ", Email: " + email);
+    });
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+            document.getElementById(tabName).classList.add("active");
+        }
+     // Simulación de datos del usuario
+     let user = {
+        name: "Oscar",
+        isActive: Math.random() > 0.5 // Simula un estado activo o inactivo
+    };
+
+    // Mostrar el nombre del usuario
+    document.getElementById("userName").textContent = user.name;
+
+    // Configurar el estado del usuario
+    let statusCircle = document.getElementById("statusCircle");
+    let statusText = document.getElementById("statusText");
+
+    if (user.isActive) {
+        statusCircle.style.backgroundColor = "blue"; 
+        statusText.textContent = "Activo";
+    } else {
+        statusCircle.style.backgroundColor = "purple"; 
+        statusText.textContent = "Inactivo";
+    }
+
+    // Configuración del mensaje temporal
+    let messageBox = document.getElementById("tempMessageBox");
+    let lastMessageTime = localStorage.getItem("lastMessageTime");
+
+    function removeMessage() {
+        messageBox.style.display = "none";
+        localStorage.removeItem("lastMessageTime");
+    }
+
+    if (!lastMessageTime || (Date.now() - lastMessageTime) > 12 * 60 * 60 * 1000) {
+        localStorage.setItem("lastMessageTime", Date.now());
+        setTimeout(removeMessage, 12 * 60 * 60 * 1000);
+    } else {
+        removeMessage();
+    }
+    </script>
+</body>
+</html>

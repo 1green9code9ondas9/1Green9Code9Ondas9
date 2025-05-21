@@ -1,5 +1,4 @@
 import "main.js";
-import "firebase.json";
 // Obtener referencias a elementos HTML
 const email = document.getElementById("email");
 const password = document.getElementById("password");

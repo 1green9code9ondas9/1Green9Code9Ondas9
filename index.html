@@ -1,89 +1,148 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.4.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.4.0/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/11.4.0/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Cyty Plus</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" defer src="app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Portada1.png" alt="Portada de Cyber Cyty Plus">
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-text">🔥 Bienvenido a Cyber Cyty Plus - Conectando al entretenimiento 🔥</div>
+        </div>
+        <div class="menu">
+            <a onclick="showTab('inicio')">Inicio</a>
+            <a onclick="showTab('mensajes')">Mensajes</a>
+            <a onclick="showTab('publicaciones')">Publicaciones</a>
+            <a onclick="showTab('perfil')">Perfil</a>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <h2>Menú Lateral</h2>
+                <ul>
+                    <li><a href="#">Opción 1</a></li>
+                    <li><a href="#">Opción 2</a></li>
+                    <li><a href="#">Opción 3</a></li>
+                </ul>
+            </div>
+            <div class="main">
+                <div id="inicio" class="tab-content active">
+                    <h2>Bienvenido a Cyber Cyty Plus</h2>
+                    <p>Selecciona una pestaña del menú para explorar las funciones.</p>
+                </div>
+                <div id="mensajes" class="tab-content">
+                    <h2>Iniciar Sesión / Registrarse</h2>
+                    <!-- Formulario de inicio de sesión -->
+                    <input type="email" id="email" placeholder="Correo">
+                    <input type="password" id="password" placeholder="Contraseña">
+                    <button id="btnLogin">Ingresar</button>
+                    <button id="btnRegister">Registrarse</button>
+                    <button id="btnLogout" style="display:none;">Cerrar Sesión</button>
+                    <!-- Formulario de registro oculto por defecto -->
+                    <div id="registerForm" style="display: none; margin-top: 20px;">
+                        <h3>Registro</h3>
+                        <input type="text" id="regNombre" placeholder="Nombre completo">
+                        <input type="email" id="regEmail" placeholder="Correo electrónico">
+                        <input type="password" id="regPassword" placeholder="Contraseña">
+                        <input type="password" id="regConfirmPassword" placeholder="Confirmar contraseña">
+                        <button id="btnSubmitRegister">Crear Cuenta</button>
+                    </div>
+                </div>
+                <div id="publicaciones" class="tab-content">
+                    <h2>Publicaciones</h2>
+                    <p>Aquí se mostrarán las publicaciones del usuario.</p>
+                </div>
+                <div id="perfil" class="tab-content">
+                    <h2>Perfil</h2>
+                    
+                    <!-- Contenedor de perfil -->
+                    <div class="perfil-container">
+                        <img id="profileImage" src="472981295_8883233155106151_253075751472862672_n.jpg" alt="Foto de perfil">
+                        <div class="perfil-info">
+                            <h3 id="userName">Usuario</h3>
+                            <div class="status">
+                                <span id="statusCircle" class="status-circle"></span>
+                                <span id="statusText">Inactivo</span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Recuadro de mensaje temporal -->
+                    <div id="tempMessageBox" class="message-box">
+                        <p id="tempMessage">Este es un mensaje temporal que desaparecerá en 12 horas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>© 2025 Cyber Cyty Plus</p>
+        </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        document.getElementById("btnRegister").addEventListener("click", function() {
+        let registerForm = document.getElementById("registerForm");
+        registerForm.style.display = registerForm.style.display === "none" ? "block" : "none";
+    });
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+    document.getElementById("btnSubmitRegister").addEventListener("click",  function() {
+        let nombre = document.getElementById("regNombre").value;
+        let email = document.getElementById("regEmail").value;
+        let password = document.getElementById("regPassword").value;
+        let confirmPassword = document.getElementById("regConfirmPassword").value;
+
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return;
         }
-      });
+
+        alert("¡Registro exitoso! Nombre: " + nombre + ", Email: " + email);
+    });
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.classList.remove("active"));
+            document.getElementById(tabName).classList.add("active");
+        }
+     // Simulación de datos del usuario
+     let user = {
+        name: "Oscar",
+        isActive: Math.random() > 0.5 // Simula un estado activo o inactivo
+    };
+
+    // Mostrar el nombre del usuario
+    document.getElementById("userName").textContent = user.name;
+
+    // Configurar el estado del usuario
+    let statusCircle = document.getElementById("statusCircle");
+    let statusText = document.getElementById("statusText");
+
+    if (user.isActive) {
+        statusCircle.style.backgroundColor = "blue"; 
+        statusText.textContent = "Activo";
+    } else {
+        statusCircle.style.backgroundColor = "purple"; 
+        statusText.textContent = "Inactivo";
+    }
+
+    // Configuración del mensaje temporal
+    let messageBox = document.getElementById("tempMessageBox");
+    let lastMessageTime = localStorage.getItem("lastMessageTime");
+
+    function removeMessage() {
+        messageBox.style.display = "none";
+        localStorage.removeItem("lastMessageTime");
+    }
+
+    if (!lastMessageTime || (Date.now() - lastMessageTime) > 12 * 60 * 60 * 1000) {
+        localStorage.setItem("lastMessageTime", Date.now());
+        setTimeout(removeMessage, 12 * 60 * 60 * 1000);
+    } else {
+        removeMessage();
+    }
     </script>
-  </body>
+</body>
 </html>
